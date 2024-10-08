@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using Terraria;
-using Terraria.Graphics;
+﻿using Terraria.Graphics;
 using Terraria.ModLoader;
 
 namespace CalamityMod.Systems
@@ -38,8 +34,7 @@ namespace CalamityMod.Systems
     {
         internal static void ModifyLightSetup(int i, int j, int type, ref float r, ref float g, ref float b)
         {
-            CalamityModWaterStyle styles = (CalamityModWaterStyle)LoaderManager.Get<WaterStylesLoader>().Get(type);
-            if (styles != null)
+            if (LoaderManager.Get<WaterStylesLoader>().Get(type) is CalamityModWaterStyle styles)
             {
                 styles?.ModifyLight(i, j, ref r, ref g, ref b);
             }
@@ -47,8 +42,7 @@ namespace CalamityMod.Systems
 
         internal static void DrawColorSetup(int x, int y, int type, ref VertexColors liquidColor, bool isSlope = false)
         {
-            CalamityModWaterStyle styles = (CalamityModWaterStyle)LoaderManager.Get<WaterStylesLoader>().Get(type);
-            if (styles != null)
+            if (LoaderManager.Get<WaterStylesLoader>().Get(type) is CalamityModWaterStyle styles)
             {
                 styles?.DrawColor(x, y, ref liquidColor, isSlope);
             }
